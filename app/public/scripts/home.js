@@ -14,8 +14,8 @@ function initButtonsForm() {
 	
 	buttonCancelar.addEventListener('click', function() {
 		let form = document.forms['tarefa-form'];
-		form["tarefa_id"].value = "";
-		form["tarefa_descricao"].value = "";
+		form["id"].value = "";
+		form["descricao"].value = "";
 		document.getElementById('form').classList.remove('form-container--open');
 	});
 }
@@ -24,8 +24,8 @@ function editarTarefa(event) {
 	let dataset = event.target.dataset;
 	
 	let form = document.forms['tarefa-form'];
-	form["tarefa_id"].value = dataset.tarefaId;
-	form["tarefa_descricao"].value = dataset.tarefaDescricao;
+	form["id"].value = dataset.tarefaId;
+	form["descricao"].value = dataset.tarefaDescricao;
 	document.getElementById('form').classList.add('form-container--open');
 }
 

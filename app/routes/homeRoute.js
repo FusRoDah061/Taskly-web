@@ -6,4 +6,8 @@ module.exports = function(app){
 	app.get('/tarefas/delete', function(req, res) {
 		app.app.controllers.homeController.deletarTarefa(app, req, res);
 	});
+
+	app.post('/tarefas', function(req, res){
+		app.app.controllers.homeController.criarTarefa(app, req, res);
+	});
 }

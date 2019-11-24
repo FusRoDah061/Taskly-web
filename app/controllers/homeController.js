@@ -53,5 +53,28 @@ module.exports = function () {
     res.redirect('/home');
   }
 
+  this.criarTarefa = function(app, req, res) {
+    const db = app.config.dbConnection();
+    let tarefaModel = app.app.models.tarefaModel;
+
+    try {
+      let tarefa = req.body;
+      tarefa.id_usuario = 1;
+
+      if(tarefa.id)
+        tarefaModel.atualizarTarefa(tarefa, db);
+      else
+        tarefaModel.inserirTarefa(tarefa, db);
+    }
+    catch (err) {
+      console.log(err);
+    }
+    finally {
+      db.close();
+    }
+
+    res.redirect('/home');
+  }
+
   return this;
 }

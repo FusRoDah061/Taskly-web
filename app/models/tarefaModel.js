@@ -40,5 +40,15 @@ module.exports = function () {
     return await connection.query(sql);
   }
 
+  this.atualizarTarefa = async function(tarefa, connection) {
+    let sql = `update tarefa set descricao = '${tarefa.descricao}' where id = ${tarefa.id}`;
+    return await connection.query(sql);
+  }
+
+  this.inserirTarefa = async function(tarefa, connection) {
+    let sql = 'insert into tarefa set ?';
+    return await connection.query(sql, tarefa);
+  }
+
   return this;
 }
