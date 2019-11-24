@@ -1,1 +1,0 @@
-Este diretório contém todos os modelos da aplicação

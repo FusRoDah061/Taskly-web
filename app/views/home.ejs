@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Taskly</title>
+
+    <%- include ./base/styles.ejs %>
+    <link rel="stylesheet" href="styles/home.css"/>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <header>
+        <h1>Taskly</h1>
+      </header>
+      <div class="tasks-content row">
+        <div class="tasks-container-wrapper col-md">
+          <div class="tasks-container">
+            <h2>Backlog</h2>
+            <div class="task-list-container">
+              <ul class="task-list">
+                <!--Preencher lista com as tarefas do BD-->
+
+                <li class="task">
+                  <p class="task-title">Título da tarefa</p>
+                  <p class="task-date">24/11/2019 01:00</p>
+                  <p class="task-progress-label">Progresso da tarefa:</p>
+                  <input class="task-progress" type="range" min="0" max="100" value="0"/>
+                  <div class="task-actions"><a class="button" href="tarefas/delete/{id}"><i class="material-icons">delete</i></a>
+                    <button class="button btn-editar-tarefa" data-tarefa-id="123" data-tarefa-descricao="Título da tarefa" onclick="editarTarefa(event)"><i class="material-icons">edit</i></button>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-list-footer">
+              <button class="button" id="btn-nova-tarefa">Nova tarefa</button>
+            </div>
+            <div class="form-container" id="form">
+              <form name="tarefa-form" method="POST" action="tarefas/">
+                <label for="tarefa-descricao">Descrição da tarefa</label>
+                <input id="tarefa-id" type="hidden" name="tarefa_id"/>
+                <input id="tarefa-descricao" type="text" maxlength="100" name="tarefa_descricao" placeholder="Tarefa legal" required="required"/>
+                <input class="button" type="submit" value="Enviar"/>
+                <input class="button" id="btn-cancelar" type="button" value="Cancelar"/>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="tasks-container-wrapper col-md">
+          <div class="tasks-container">
+            <h2>Em andamento</h2>
+            <div class="task-list-container">
+              <ul class="task-list">
+                <!--Preencher lista com as tarefas do BD-->
+                <li class="task">
+                  <p class="task-title">Título da tarefa</p>
+                  <p class="task-date">24/11/2019 01:00</p>
+                  <p class="task-progress-label">Progresso da tarefa:</p>
+                  <input class="task-progress" type="range" min="0" max="100" value="30"/>
+                  <div class="task-actions"><a class="button" href="tarefas/delete/{id}"><i class="material-icons">delete</i></a></div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="tasks-container-wrapper col-md">
+          <div class="tasks-container">
+            <h2>Concluídas</h2>
+            <div class="task-list-container">
+              <ul class="task-list">
+                <!--Preencher lista com as tarefas do BD-->
+                <li class="task">
+                  <p class="task-title">Título da tarefa</p>
+                  <p class="task-date">24/11/2019 01:00</p>
+                  <p class="task-progress-label">Progresso da tarefa:</p>
+                  <input class="task-progress" type="range" min="0" max="100" value="100"/>
+                  <div class="task-actions"><a class="button" href="tarefas/delete/{id}"><i class="material-icons">delete</i></a></div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <%- include ./base/scripts.ejs %>
+    <script src="scripts/home.js"></script>
+  </body>
+</html>
