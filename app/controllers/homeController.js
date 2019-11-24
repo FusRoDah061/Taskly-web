@@ -33,5 +33,25 @@ module.exports = function () {
     });
   }
 
+  this.deletarTarefa = async function(app, req, res) {
+
+    const db = app.config.dbConnection();
+    let tarefaModel = app.app.models.tarefaModel;
+    let idTarefa = req.query.id;
+
+    try{
+      if(idTarefa)
+        await tarefaModel.deleteTarefa(idTarefa, db);
+    }
+    catch (err) {
+      console.log(err);
+    }
+    finally {
+      await db.close();
+    }
+
+    res.redirect('/home');
+  }
+
   return this;
 }

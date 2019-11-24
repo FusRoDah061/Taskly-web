@@ -26,7 +26,7 @@
                     <p class="task-progress-label">Progresso da tarefa:</p>
                     <input class="task-progress" type="range" min="0" max="100" value="<%= tarefa.progresso %>"/>
                     <div class="task-actions">
-                      <a class="button" href="tarefas/delete/<%= tarefa.id %>"><i class="material-icons">delete</i></a>
+                      <a class="button" href="/tarefas/delete?id=<%= tarefa.id %>"><i class="material-icons">delete</i></a>
                       <button class="button btn-editar-tarefa" data-tarefa-id="<%= tarefa.id %>" data-tarefa-descricao="<%= tarefa.descricao %>" onclick="editarTarefa(event)"><i class="material-icons">edit</i></button>
                     </div>
                   </li>
@@ -59,7 +59,7 @@
                     <p class="task-progress-label">Progresso da tarefa:</p>
                     <input class="task-progress" type="range" min="0" max="100" value="<%= tarefa.progresso %>"/>
                     <div class="task-actions">
-                      <a class="button" href="tarefas/delete/<%= tarefa.id %>"><i class="material-icons">delete</i></a>
+                      <a class="button" href="/tarefas/delete?id=<%= tarefa.id %>"><i class="material-icons">delete</i></a>
                     </div>
                   </li>
                 <% } %>
@@ -79,7 +79,7 @@
                     <p class="task-progress-label">Progresso da tarefa:</p>
                     <input class="task-progress" type="range" min="0" max="100" value="<%= tarefa.progresso %>"/>
                     <div class="task-actions">
-                      <a class="button" href="tarefas/delete/<%= tarefa.id %>"><i class="material-icons">delete</i></a>
+                      <a class="button" href="/tarefas/delete?id=<%= tarefa.id %>"><i class="material-icons">delete</i></a>
                     </div>
                   </li>
                 <% } %>

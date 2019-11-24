@@ -35,5 +35,10 @@ module.exports = function () {
     return await connection.query(sql);
   }
 
+  this.deleteTarefa = async function(idTarefa, connection) {
+    let sql = `delete from tarefa where id = ${idTarefa}`;
+    return await connection.query(sql);
+  }
+
   return this;
 }
