@@ -1,5 +1,5 @@
 module.exports = function(app){
 	app.get('/home', function(req, res){
-		res.render('home');
+		app.app.controllers.homeController.getTarefas(app, req, res);
 	});
 }

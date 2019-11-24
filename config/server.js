@@ -13,6 +13,10 @@ app.use(body_parser.urlencoded({ extended: true }));
 consign()
 .include('app/routes')
 .then('config/dbConnection.js')
+// Models
+.then('app/models/tarefaModel.js')
+// Controllers
+.then('app/controllers/homeController.js')
 .into(app);
 
 module.exports = app;

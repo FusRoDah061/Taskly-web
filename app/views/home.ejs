@@ -19,17 +19,18 @@
             <h2>Backlog</h2>
             <div class="task-list-container">
               <ul class="task-list">
-                <!--Preencher lista com as tarefas do BD-->
-
-                <li class="task">
-                  <p class="task-title">Título da tarefa</p>
-                  <p class="task-date">24/11/2019 01:00</p>
-                  <p class="task-progress-label">Progresso da tarefa:</p>
-                  <input class="task-progress" type="range" min="0" max="100" value="0"/>
-                  <div class="task-actions"><a class="button" href="tarefas/delete/{id}"><i class="material-icons">delete</i></a>
-                    <button class="button btn-editar-tarefa" data-tarefa-id="123" data-tarefa-descricao="Título da tarefa" onclick="editarTarefa(event)"><i class="material-icons">edit</i></button>
-                  </div>
-                </li>
+                <% for(let tarefa of tarefas.backlog) { %>
+                  <li class="task">
+                    <p class="task-title"><%= tarefa.descricao %></p>
+                    <p class="task-date"><%= tarefa.created_at %></p>
+                    <p class="task-progress-label">Progresso da tarefa:</p>
+                    <input class="task-progress" type="range" min="0" max="100" value="<%= tarefa.progresso %>"/>
+                    <div class="task-actions">
+                      <a class="button" href="tarefas/delete/<%= tarefa.id %>"><i class="material-icons">delete</i></a>
+                      <button class="button btn-editar-tarefa" data-tarefa-id="<%= tarefa.id %>" data-tarefa-descricao="<%= tarefa.descricao %>" onclick="editarTarefa(event)"><i class="material-icons">edit</i></button>
+                    </div>
+                  </li>
+                <% } %>
               </ul>
             </div>
             <div class="task-list-footer">
@@ -51,14 +52,17 @@
             <h2>Em andamento</h2>
             <div class="task-list-container">
               <ul class="task-list">
-                <!--Preencher lista com as tarefas do BD-->
-                <li class="task">
-                  <p class="task-title">Título da tarefa</p>
-                  <p class="task-date">24/11/2019 01:00</p>
-                  <p class="task-progress-label">Progresso da tarefa:</p>
-                  <input class="task-progress" type="range" min="0" max="100" value="30"/>
-                  <div class="task-actions"><a class="button" href="tarefas/delete/{id}"><i class="material-icons">delete</i></a></div>
-                </li>
+                <% for(let tarefa of tarefas.emAndamento) { %>
+                  <li class="task">
+                    <p class="task-title"><%= tarefa.descricao %></p>
+                    <p class="task-date"><%= tarefa.created_at %></p>
+                    <p class="task-progress-label">Progresso da tarefa:</p>
+                    <input class="task-progress" type="range" min="0" max="100" value="<%= tarefa.progresso %>"/>
+                    <div class="task-actions">
+                      <a class="button" href="tarefas/delete/<%= tarefa.id %>"><i class="material-icons">delete</i></a>
+                    </div>
+                  </li>
+                <% } %>
               </ul>
             </div>
           </div>
@@ -68,14 +72,17 @@
             <h2>Concluídas</h2>
             <div class="task-list-container">
               <ul class="task-list">
-                <!--Preencher lista com as tarefas do BD-->
-                <li class="task">
-                  <p class="task-title">Título da tarefa</p>
-                  <p class="task-date">24/11/2019 01:00</p>
-                  <p class="task-progress-label">Progresso da tarefa:</p>
-                  <input class="task-progress" type="range" min="0" max="100" value="100"/>
-                  <div class="task-actions"><a class="button" href="tarefas/delete/{id}"><i class="material-icons">delete</i></a></div>
-                </li>
+                <% for(let tarefa of tarefas.concluidas) { %>
+                  <li class="task">
+                    <p class="task-title"><%= tarefa.descricao %></p>
+                    <p class="task-date"><%= tarefa.created_at %></p>
+                    <p class="task-progress-label">Progresso da tarefa:</p>
+                    <input class="task-progress" type="range" min="0" max="100" value="<%= tarefa.progresso %>"/>
+                    <div class="task-actions">
+                      <a class="button" href="tarefas/delete/<%= tarefa.id %>"><i class="material-icons">delete</i></a>
+                    </div>
+                  </li>
+                <% } %>
               </ul>
             </div>
           </div>
