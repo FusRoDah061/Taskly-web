@@ -2,7 +2,7 @@
   "name": "Taskly",
   "version": "1.0.0",
   "description": "Aplicativo to-do list, desenvolvido na disciplina de Desenvolvimento de Sistemas Web no Curso de Análise e Des. Sist. pelo IFSP Campinas.",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "start": "node app.js"
   },
@@ -20,6 +20,7 @@
     "nodemon": "^2.0.1"
   },
   "engines": {
-    "node": "10.16.x"
+    "node": "10.16.x",
+    "npm": "6.9.x"
   }
 }
