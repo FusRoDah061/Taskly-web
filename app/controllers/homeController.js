@@ -93,6 +93,20 @@ module.exports = function () {
 
     try {
       await tarefaModel.atualizarProgressoTarefa(tarefa, db);
+      tarefa = await tarefaModel.getTarefa(1, tarefa.id, db);
+
+      if(tarefa.progresso == 100) {
+        let emailDestino = process.env.EMAIL_NOTIFICACAO;
+        
+        if(emailDestino)
+          app.config.emailSender.send(
+            emailDestino, 
+            `Tarefa "${tarefa.descricao}" finalizada com sucesso.`, 
+            `A tarefa "${tarefa.descricao}" foi finalizada com sucesso em ${new Date()}.`
+          );
+        else
+          console.log('Email não enviado. EMAIL_NOTIFICACAO é nulo.');
+      }
     }
     catch (err) {
       console.log(err);
