@@ -1,3 +1,4 @@
+require('dotenv/config');
 const util = require( 'util' );
 const mysql = require('mysql');
 
@@ -9,10 +10,10 @@ let connMysql = function () {
     if(!clearDbUrl) {
         //Rodando local
         settings = {};
-        settings.host = 'localhost';
-        settings.user = 'root';
-        settings.password = '';
-        settings.database = 'taskly';
+        settings.host = process.env.HOST;
+        settings.user = process.env.USER;
+        settings.password = process.env.PASSWORD;
+        settings.database = process.env.DATABASE;
     }
     else { 
         //Rodando no Heroku com ClearDB
