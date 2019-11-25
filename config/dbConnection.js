@@ -2,12 +2,24 @@ const util = require( 'util' );
 const mysql = require('mysql');
 
 let connMysql = function () {
-    const connection = mysql.createConnection({
-        host:     'localhost',
-        user:     'root',
-        password: '',
-        database: 'taskly'
-    });
+    
+    const clearDbUrl = process.env.CLEARDB_DATABASE_URL;
+    let settings;
+    
+    if(!clearDbUrl) {
+        //Rodando local
+        settings = {};
+        settings.host = 'localhost';
+        settings.user = 'root';
+        settings.password = '';
+        settings.database = 'taskly';
+    }
+    else { 
+        //Rodando no Heroku com ClearDB
+        settings = clearDbUrl;
+    }
+    
+    const connection = mysql.createConnection(settings);
 
     return {
         query(sql, args) {
