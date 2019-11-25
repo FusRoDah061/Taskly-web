@@ -21,10 +21,14 @@
               <ul class="task-list">
                 <% for(let tarefa of tarefas.backlog) { %>
                   <li class="task">
+                    <a class="task-anchor"  name="<%= tarefa.id %>"></a>
                     <p class="task-title"><%= tarefa.descricao %></p>
                     <p class="task-date"><%= tarefa.created_at %></p>
                     <p class="task-progress-label">Progresso da tarefa:</p>
-                    <input class="task-progress" type="range" min="0" max="100" value="<%= tarefa.progresso %>"/>
+                    <form name="progresso-form-<%= tarefa.id %>" method="POST" action="tarefas/progresso">
+                      <input type="hidden" name="id" value="<%= tarefa.id %>"/>
+                      <input class="task-progress" type="range" min="0" max="100" value="<%= tarefa.progresso %>" name="progresso" onchange="document.forms['progresso-form-<%= tarefa.id %>'].submit()"/>
+                    </form>
                     <div class="task-actions">
                       <a class="button" href="/tarefas/delete?id=<%= tarefa.id %>"><i class="material-icons">delete</i></a>
                       <button class="button btn-editar-tarefa" data-tarefa-id="<%= tarefa.id %>" data-tarefa-descricao="<%= tarefa.descricao %>" onclick="editarTarefa(event)"><i class="material-icons">edit</i></button>
@@ -54,10 +58,14 @@
               <ul class="task-list">
                 <% for(let tarefa of tarefas.emAndamento) { %>
                   <li class="task">
+                    <a class="task-anchor"  name="<%= tarefa.id %>"></a>
                     <p class="task-title"><%= tarefa.descricao %></p>
                     <p class="task-date"><%= tarefa.created_at %></p>
                     <p class="task-progress-label">Progresso da tarefa:</p>
-                    <input class="task-progress" type="range" min="0" max="100" value="<%= tarefa.progresso %>"/>
+                    <form name="progresso-form-<%= tarefa.id %>" method="POST" action="tarefas/progresso">
+                      <input type="hidden" name="id" value="<%= tarefa.id %>"/>
+                      <input class="task-progress" type="range" min="0" max="100" value="<%= tarefa.progresso %>" name="progresso" onchange="document.forms['progresso-form-<%= tarefa.id %>'].submit()"/>
+                    </form>
                     <div class="task-actions">
                       <a class="button" href="/tarefas/delete?id=<%= tarefa.id %>"><i class="material-icons">delete</i></a>
                     </div>
@@ -74,10 +82,14 @@
               <ul class="task-list">
                 <% for(let tarefa of tarefas.concluidas) { %>
                   <li class="task">
+                    <a class="task-anchor" name="<%= tarefa.id %>"></a>
                     <p class="task-title"><%= tarefa.descricao %></p>
                     <p class="task-date"><%= tarefa.created_at %></p>
                     <p class="task-progress-label">Progresso da tarefa:</p>
-                    <input class="task-progress" type="range" min="0" max="100" value="<%= tarefa.progresso %>"/>
+                    <form name="progresso-form-<%= tarefa.id %>" method="POST" action="tarefas/progresso">
+                      <input type="hidden" name="id" value="<%= tarefa.id %>"/>
+                      <input class="task-progress" type="range" min="0" max="100" value="<%= tarefa.progresso %>" name="progresso" onchange="document.forms['progresso-form-<%= tarefa.id %>'].submit()"/>
+                    </form>
                     <div class="task-actions">
                       <a class="button" href="/tarefas/delete?id=<%= tarefa.id %>"><i class="material-icons">delete</i></a>
                     </div>

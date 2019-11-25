@@ -50,5 +50,10 @@ module.exports = function () {
     return await connection.query(sql, tarefa);
   }
 
+  this.atualizarProgressoTarefa = async function(tarefa, connection) {
+    let sql = `update tarefa set progresso = '${tarefa.progresso}' where id = ${tarefa.id}`;
+    return await connection.query(sql);
+  }
+
   return this;
 }

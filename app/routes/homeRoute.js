@@ -10,4 +10,8 @@ module.exports = function(app){
 	app.post('/tarefas', function(req, res){
 		app.app.controllers.homeController.criarTarefa(app, req, res);
 	});
+
+	app.post('/tarefas/progresso', function(req, res){
+		app.app.controllers.homeController.atualizarProgressoTarefa(app, req, res);
+	});
 }

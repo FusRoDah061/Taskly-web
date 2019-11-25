@@ -53,7 +53,7 @@ module.exports = function () {
     res.redirect('/home');
   }
 
-  this.criarTarefa = function(app, req, res) {
+  this.criarTarefa = async function(app, req, res) {
     const db = app.config.dbConnection();
     let tarefaModel = app.app.models.tarefaModel;
 
@@ -62,18 +62,40 @@ module.exports = function () {
       tarefa.id_usuario = 1;
 
       if(tarefa.id)
-        tarefaModel.atualizarTarefa(tarefa, db);
+        await tarefaModel.atualizarTarefa(tarefa, db);
       else
-        tarefaModel.inserirTarefa(tarefa, db);
+        await tarefaModel.inserirTarefa(tarefa, db);
     }
     catch (err) {
       console.log(err);
     }
     finally {
-      db.close();
+      await db.close();
     }
 
     res.redirect('/home');
+  }
+
+  this.atualizarProgressoTarefa = async function(app, req, res) {
+    const db = app.config.dbConnection();
+    let tarefaModel = app.app.models.tarefaModel;
+
+    let tarefa = req.body;
+
+    try {
+      await tarefaModel.atualizarProgressoTarefa(tarefa, db);
+    }
+    catch (err) {
+      console.log(err);
+    }
+    finally {
+      await db.close();
+    }
+
+    if(req.device.type.toUpperCase() === 'PHONE')
+      res.redirect(`/home#${tarefa.id}`);
+    else
+      res.redirect(`/home`);
   }
 
   return this;

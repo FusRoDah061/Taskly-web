@@ -83,12 +83,13 @@ header h1 {
   right: 0;
   top: 100%;
   transition: .4s;
-  z-index: 10;
+  z-index: 0;
   padding: 15px 20px;
 }
 .tasks-content .tasks-container-wrapper .tasks-container .form-container--open {
   top: 0;
   opacity: 1;
+  z-index: 10;
 }
 .tasks-content .tasks-container-wrapper .tasks-container .form-container form label {
   width: 100%;
@@ -118,6 +119,10 @@ header h1 {
   border-radius: 6px;
   border-bottom: 2px solid var(--color-gray);
   margin: 15px 0px;
+}
+.task-list-container .task-list .task .task-anchor {
+  position: absolute;
+  top: -50px;
 }
 .task-list-container .task-list .task .task-title {
   font-weight: bold;
