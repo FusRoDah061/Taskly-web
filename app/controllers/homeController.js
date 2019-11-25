@@ -3,7 +3,7 @@ module.exports = function () {
   this.getTarefas = async function(app, req, res) {
 
     let db = app.config.dbConnection();
-    let tarefaModel = app.app.models.tarefaModel;
+    let tarefaModel = app.models.tarefaModel;
 
     let tarefasBacklog = [];
     let tarefasEmAndamento = [];
@@ -20,7 +20,10 @@ module.exports = function () {
       erro = err;
     }
     finally {
-      await db.close();
+      try {
+        await db.close();
+      }
+      catch(err) {}
     }
 
     res.render('home', {
@@ -36,7 +39,7 @@ module.exports = function () {
   this.deletarTarefa = async function(app, req, res) {
 
     const db = app.config.dbConnection();
-    let tarefaModel = app.app.models.tarefaModel;
+    let tarefaModel = app.models.tarefaModel;
     let idTarefa = req.query.id;
 
     try{
@@ -47,7 +50,10 @@ module.exports = function () {
       console.log(err);
     }
     finally {
-      await db.close();
+      try {
+        await db.close();
+      }
+      catch(err) {}
     }
 
     res.redirect('/home');
@@ -55,7 +61,7 @@ module.exports = function () {
 
   this.criarTarefa = async function(app, req, res) {
     const db = app.config.dbConnection();
-    let tarefaModel = app.app.models.tarefaModel;
+    let tarefaModel = app.models.tarefaModel;
 
     try {
       let tarefa = req.body;
@@ -70,7 +76,10 @@ module.exports = function () {
       console.log(err);
     }
     finally {
-      await db.close();
+      try {
+        await db.close();
+      }
+      catch(err) {}
     }
 
     res.redirect('/home');
@@ -78,7 +87,7 @@ module.exports = function () {
 
   this.atualizarProgressoTarefa = async function(app, req, res) {
     const db = app.config.dbConnection();
-    let tarefaModel = app.app.models.tarefaModel;
+    let tarefaModel = app.models.tarefaModel;
 
     let tarefa = req.body;
 
@@ -89,7 +98,10 @@ module.exports = function () {
       console.log(err);
     }
     finally {
-      await db.close();
+      try {
+        await db.close();
+      }
+      catch(err) {}
     }
 
     if(req.device.type.toUpperCase() === 'PHONE')

@@ -13,12 +13,19 @@ app.use(device.capture());
 app.use(body_parser.urlencoded({ extended: true }));
 
 consign()
-.include('app/routes')
-.then('config/dbConnection.js')
+.include('./app/routes')
+.then('./config/dbConnection.js')
 // Models
-.then('app/models/tarefaModel.js')
+.then('./app/models/tarefaModel.js')
 // Controllers
-.then('app/controllers/homeController.js')
+.then('./app/controllers/homeController.js')
 .into(app);
+
+if(app.app) {
+  app.routes = app.app.routes;
+  app.models = app.app.models;
+  app.controllers = app.app.controllers;
+  app.app = undefined;
+}
 
 module.exports = app;
