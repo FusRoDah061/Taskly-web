@@ -11,15 +11,14 @@ app.use(express.static('./app/public'));
 app.use(device.capture());
 
 app.use(body_parser.urlencoded({ extended: true }));
+app.use(body_parser.json());
 
 consign()
 .include('./app/routes')
 .then('./config/dbConnection.js')
 .then('./config/emailSender.js')
-// Models
-.then('./app/models/tarefaModel.js')
-// Controllers
-.then('./app/controllers/homeController.js')
+.then('./app/models')
+.then('./app/controllers')
 .into(app);
 
 if(app.app) {

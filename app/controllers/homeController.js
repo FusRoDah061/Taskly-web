@@ -93,7 +93,7 @@ module.exports = function () {
 
     try {
       await tarefaModel.atualizarProgressoTarefa(tarefa, db);
-      tarefa = await tarefaModel.getTarefa(1, tarefa.id, db);
+      tarefa = await tarefaModel.getTarefa(tarefa.id, db);
 
       if(tarefa.progresso == 100) {
         let emailDestino = process.env.EMAIL_NOTIFICACAO;

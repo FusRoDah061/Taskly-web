@@ -27,11 +27,10 @@ module.exports = function () {
     return await connection.query(sql);
   }
 
-  this.getTarefa = async function(idUsuario, idTarefa, connection) {
+  this.getTarefa = async function(idTarefa, connection) {
     let sql = `select id, id_usuario, descricao, progresso, date_format(created_at, '${DATE_FORMAT}') as created_at    
                from tarefa 
-               where id = ${idTarefa} and 
-                     id_usuario = ${idUsuario}`;
+               where id = ${idTarefa}`;
     
     let collection = await connection.query(sql);
     return collection[0];
