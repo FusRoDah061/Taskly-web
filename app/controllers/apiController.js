@@ -5,6 +5,12 @@ module.exports = function() {
     let usuarioModel = app.models.usuarioModel;
 
     let usuario = await usuarioModel.getByEmail(email, db);
+    
+    try {
+      await db.close();
+    }
+    catch(err) {}
+    
     return usuario;
   }
 
@@ -13,6 +19,12 @@ module.exports = function() {
     let tarefaModel = app.models.tarefaModel;
 
     let tarefa = await tarefaModel.getTarefa(id, db);
+    
+    try {
+      await db.close();
+    }
+    catch(err) {}
+    
     return tarefa;
   }
 
@@ -87,6 +99,12 @@ module.exports = function() {
       catch(err) {
         res.send(buildErrorResponse(res, 500, err));
       }
+      finally {
+        try {
+          await db.close();
+        }
+        catch(err) {}
+      }
     }
     else {
       res.send(buildErrorResponse(res, 400, 'E-mail do usuário é obrigatório.'));
@@ -102,6 +120,12 @@ module.exports = function() {
       }
       catch(err) {
         res.send(buildErrorResponse(res, 500, err));
+      }
+      finally {
+        try {
+          await db.close();
+        }
+        catch(err) {}    
       }
     }
     else {
@@ -130,6 +154,12 @@ module.exports = function() {
       catch(err) {
         res.send(buildErrorResponse(res, 500, err));
       }
+      finally {
+        try {
+          await db.close();
+        }
+        catch(err) {} 
+      }
     }
     else {
       res.send(buildErrorResponse(res, 400, 'E-mail do usuário é obrigatório.'));
@@ -156,6 +186,12 @@ module.exports = function() {
       catch(err) {
         res.send(buildErrorResponse(res, 500, err));
       }
+      finally {
+        try {
+          await db.close();
+        }
+        catch(err) {} 
+      }
     }
     else {
       res.send(buildErrorResponse(res, 400, 'Identificador da tarefa é obrigatório.'));
@@ -174,6 +210,12 @@ module.exports = function() {
       }
       catch(err) {
         res.send(buildErrorResponse(res, 500, err));
+      }
+      finally {
+        try {
+          await db.close();
+        }
+        catch(err) {} 
       }
     }
     else {
