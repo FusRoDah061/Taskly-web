@@ -10,7 +10,7 @@ module.exports = function () {
   }
 
   this.atualizarTarefa = async function(tarefa, connection) {
-    let sql = `update tarefa set descricao = '${tarefa.descricao}', created_at = str_to_date('${tarefa.created_at}', '%Y-%m-%d %H:%i:%s') where id = ${tarefa.id}`;
+    let sql = `update tarefa set descricao = '${tarefa.descricao}', progresso = ${tarefa.progresso}, created_at = str_to_date('${tarefa.created_at}', '%Y-%m-%d %H:%i:%s') where id = ${tarefa.id}`;
     return await connection.query(sql);
   }
 
