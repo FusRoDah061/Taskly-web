@@ -147,9 +147,10 @@ module.exports = function() {
           progresso: 0
         }
 
-        await tarefaModel.inserirTarefa(tarefa, db);
+        let row = await tarefaModel.inserirTarefa(tarefa, db);
+        tarefa = await tarefaModel.getTarefa(row.insertId, db);
         res.status(200);
-        res.send();
+        res.send(tarefa);
       }
       catch(err) {
         res.send(buildErrorResponse(res, 500, err));
@@ -180,8 +181,9 @@ module.exports = function() {
         }
 
         await tarefaModel.atualizarTarefa(tarefa, db);
+        tarefa = await tarefaModel.getTarefa(tarefa.id, db);
         res.status(200);
-        res.send();
+        res.send(tarefa);
       }
       catch(err) {
         res.send(buildErrorResponse(res, 500, err));
