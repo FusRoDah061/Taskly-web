@@ -170,6 +170,7 @@ module.exports = function() {
   this.atualizaTarefa = async function(app, req, res) {
     let db = app.config.dbConnection();
     let tarefaModel = app.models.tarefaModel;
+    let apiModel = app.models.apiModel;
     let tarefaDto = req.body;
 
     if(req.tarefa) {
@@ -178,9 +179,10 @@ module.exports = function() {
           id: req.tarefa.id,
           descricao: tarefaDto.descricao,
           created_at: tarefaDto.data,
+          progresso: tarefaDto.progresso
         }
 
-        await tarefaModel.atualizarTarefa(tarefa, db);
+        await apiModel.atualizarTarefa(tarefa, db);
         tarefa = await tarefaModel.getTarefa(tarefa.id, db);
         res.status(200);
         res.send(tarefa);
