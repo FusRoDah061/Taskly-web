@@ -224,4 +224,12 @@ input[type='text'] {
     padding-bottom: 15px;
   }
 }
-  
+
+.auth-menu {
+  margin-left: 33%;
+  margin-right: 33%;
+}
+
+.auth-button {
+  height: 69px;
+}
