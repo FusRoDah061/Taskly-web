@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Taskly</title>
+
+    <%- include ./base/styles.ejs %>
+    <link rel="stylesheet" href="styles/home.css"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="container-fluid">
+      <header>
+        <h1>Taskly</h1>
+      </header>
+      <div class="tasks-content row">
+        <div class="tasks-container-wrapper col-md">
+          <div class="auth-container auth-menu">
+            <h2>Cadastro</h2>
+            <br>
+            <div class="task-list-container">
+              <form name="cadastro-form" method="POST" action="/auth/cadastrar_usuario">
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
+                  <small id="emailHelp" class="form-text text-muted">Seu email está seguro com os yellows =).</small>
+                </div>
+                <div class="form-group">
+                  <label for="senha">Senha</label>
+                  <input type="password" class="form-control" id="senha">
+                </div>
+                <div class="form-group">
+                  <label for="confSenha">Confirmar Senha</label>
+                  <input type="password" class="form-control" id="confSenha">
+                </div>
+                <div class="form-group middle">
+                  <button type="submit" class="btn btn-warning col-sm-6">Cadastrar</button>
+                  <a href="/login" class="btn btn-light col-sm-6">Já tenho conta</a>  
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <%- include ./base/scripts.ejs %>
+    <script src="scripts/home.js"></script>
+  </body>
+</html>

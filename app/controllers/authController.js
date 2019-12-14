@@ -1,5 +1,22 @@
 module.exports = function () {
 
+    this.cadastrarUsuario = async function(app, req, res) {
+      let db = app.config.dbConnection();
+      let authModel = app.models.authModel;
+      let usuario = req.body;
+
+      console.log(usuario)
+
+
+      //await authModel.cadastrarUsuario(app);
+      let tarefas;
+      res.redirect('/home');
+    }
+
+    this.login = async function(app, req, res) {
+      res.render('login');
+    }
+
     this.authenticate = async function(app, req, res) {
   
       let db = app.config.dbConnection();
@@ -26,7 +43,7 @@ module.exports = function () {
         catch(err) {}
       }
   
-      res.render('auth');
+      res.render('cadastro');
     }
    
     return this;
