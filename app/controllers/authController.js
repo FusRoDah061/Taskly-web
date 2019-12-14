@@ -5,36 +5,67 @@ module.exports = function () {
       let authModel = app.models.authModel;
       let usuario = req.body;
 
-      console.log(usuario)
-
-
-      //await authModel.cadastrarUsuario(app);
-      let tarefas;
-      res.redirect('/home');
+      req.assert("email", "Email é obrigatório").notEmpty();
+      req.assert("senha", "Senha é obrigatória").notEmpty();
+      let erros = req.validationErrors();
+      console.log(erros);
+      if (erros) {
+          res.render('cadastro', { erros: erros });
+          return;
+      }
+      
+        let result = await authModel.cadastrarUsuario(usuario, db, app);
+        console.log("result",result)
+        if(result){
+          req.session.autorizado = true;
+          res.redirect('/home');
+          return;
+        }else{
+          req.session.autorizado = false;
+          let erro = 'Erro ao cadastrar'
+          res.render('/', { erros: erro });
+        }                  
+      
     }
 
     this.login = async function(app, req, res) {
-      res.render('login');
+      res.render('login', { erros: {} });
     }
 
-    this.authenticate = async function(app, req, res) {
-  
-      let db = app.config.dbConnection();
-      let tarefaModel = app.models.tarefaModel;
-  
-      let tarefasBacklog = [];
-      let tarefasEmAndamento = [];
-      let tarefasConcluidas = [];
-      let erro = null;
-  
-      try{
-        tarefasBacklog = await tarefaModel.getTarefasBacklog(1, db);
-        tarefasEmAndamento = await tarefaModel.getTarefasEmAndamento(1, db);
-        tarefasConcluidas = await tarefaModel.getTarefasConcluidas(1, db);
+    this.inserirUsuario = async function(app, req, res) {  
+      res.render('cadastro', { erros: {} });
+    }
+   
+    this.authenticate = async function(app, req, res) {  
+      //res.render('cadastro', { erros: {} });
+
+      let usuario = req.body;
+      req.assert("email", "Email é obrigatório").notEmpty();
+      req.assert("senha", "Senha é obrigatória").notEmpty();
+      let erros = req.validationErrors();
+      console.log(erros);
+      if (erros) {
+          res.render('login', { erros: erros });
+          return;
       }
-      catch (err) {
-        console.log(err);
-        erro = err;
+      let db = app.config.dbConnection();
+      let authModel = app.models.authModel;
+
+      
+      try {
+        let result = await authModel.authenticate(usuario, db);
+        console.log(result.length)
+        if(result.length > 0){
+          req.session.autorizado = true;
+          res.redirect('/home');
+          return;
+        }else{
+          console.log("Erro ao autenticar");
+          req.session.autorizado = false;
+          res.render('login', { erros: {} });
+        } 
+      } catch (error) {
+        res.redirect('/login');
       }
       finally {
         try {
@@ -42,10 +73,16 @@ module.exports = function () {
         }
         catch(err) {}
       }
-  
-      res.render('cadastro');
+
+    
     }
-   
+
+    this.sair = async function(app, req, res) {  
+      req.session.destroy( function(erro){
+        res.redirect("/login");
+      })
+    }
+
     return this;
   }
   

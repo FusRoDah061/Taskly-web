@@ -17,22 +17,35 @@
       <div class="tasks-content row">
         <div class="tasks-container-wrapper col-md">
           <div class="auth-container auth-menu">
+              <section>
+                  <% if(erros.length > 0) { %>
+                    <p>Atenção!</p>
+                    <ul>
+                      <% for(let i = 0; i < erros.length; i++){ %>
+                      <li>
+                        <%= erros[i].msg %>
+                      </li>
+                      <% } %>
+                    </ul>
+
+                  <% } %>
+                </section>
             <h2>Cadastro</h2>
             <br>
             <div class="task-list-container">
               <form name="cadastro-form" method="POST" action="/auth/cadastrar_usuario">
                 <div class="form-group">
                   <label for="email">Email</label>
-                  <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
+                  <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
                   <small id="emailHelp" class="form-text text-muted">Seu email está seguro com os yellows =).</small>
                 </div>
                 <div class="form-group">
                   <label for="senha">Senha</label>
-                  <input type="password" class="form-control" id="senha">
+                  <input type="password" class="form-control" id="senha" name="senha">
                 </div>
                 <div class="form-group">
                   <label for="confSenha">Confirmar Senha</label>
-                  <input type="password" class="form-control" id="confSenha">
+                  <input type="password" class="form-control" id="confSenha" name="">
                 </div>
                 <div class="form-group middle">
                   <button type="submit" class="btn btn-warning col-sm-6">Cadastrar</button>
